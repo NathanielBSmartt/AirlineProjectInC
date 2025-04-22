@@ -27,6 +27,29 @@ RouteRecord *createRecords(FILE *file)
 
 int fillRecords(RouteRecord *r, FILE *file)
 {
+    char line[256];
+    int month = 0;
+    int count = 0;
+    char *usg = '';
+    char *fg = '';
+    char *carrier = '';
+    int[] passengers = {0, 0, 0, 0, 0, 0};
+    fgets(line, sizeof(line), file); // Header line skip
+
+    while (fgets(line, sizeof(line), file) != NULL)
+    {
+        month = atoi(strtok(line, ","));
+        r[count].from = strtok(NULL, ",");
+        r[count].to = strtok(NULL, ",");
+        r[count].carrier = strtok(NULL, ",");
+        passengers[month - 1] += atoi(strtok(NULL, ","));
+        r[count].passengers[0] = passengers[month - 1];
+
+        if (r[count].carrier.length == 2)
+        {
+            count++;
+        }
+    }
 }
 
 int findAirlineRoute(RouteRecord *r, int length, const char *origin, const char *destination, const char *airline, int curIndex)
