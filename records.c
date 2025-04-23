@@ -57,6 +57,9 @@ int findAirlineRoute(RouteRecord *r, int length, const char *origin, const char 
     if (r.to == destination && r.from == origin && r.carrier == airline)
     {
         return curIndex;
+    }else if(r.to == destination && r.from == origin && r.carrier == "")
+    {
+        return curIndex;
     }
     else if (currIndex == length)
     {
@@ -68,11 +71,57 @@ int findAirlineRoute(RouteRecord *r, int length, const char *origin, const char 
     }
 }
 
-void searchRecords(RouteRecord *r, int length, const char *searchKey, SearchType type)
+void searchRecords(RouteRecord *r, int length, const char *key1, const char *key2, SearchType type)
 {
+    int index = 0;
+
+    if (type == ROUTE)
+    {
+        while(index < length){
+            if (r[index].to == key1 && r[index].from == key2)
+            {
+                printf("%s, %s, %s, %d\n", r[index].to, r[index].from, r[index].carrier, r[index].passengers);
+                break;
+            }
+            index++;
+        }
+    }
+    else if (type == ORIGIN)
+    {
+        while(index < length){
+            if (r[index].from == key1)
+            {
+                printf("%s, %s, %s, %d\n", r[index].to, r[index].from, r[index].carrier, r[index].passengers);
+                break;
+            }
+            index++;
+        }
+    }
+    else if (type == DESTINATION)
+    {
+        while(index<length){
+            if (r[index].to == key1)
+            {
+                printf("%s, %s, %s, %d\n", r[index].to, r[index].from, r[index].carrier, r[index].passengers);
+                break;
+            }
+            index++;
+        }
+    }
+    else if (type == AIRLINE)
+    {
+        while(index<length){
+            if (r[index].carrier == key1)
+            {
+                printf("%s, %s, %s, %d\n", r[index].to, r[index].from, r[index].carrier, r[index].passengers);
+                break;
+            }
+            index++;
+        }
+    }
 }
 
-void printMenu()
+static void printMenu()
 {
     printf("\n\n######### Airline Route Records Database MENU #########\n");
     printf("1. Search by Route\n");
@@ -81,4 +130,15 @@ void printMenu()
     printf("4. Search by Airline\n");
     printf("5. Quit\n");
     printf("Enter your selection: ");
+}
+
+int getSizeOfArray(FILE *file){
+    char line[256];
+    int count = 0;
+    fgets(line, sizeof(line), file); // header skip
+    while (fgets(line, sizeof(line), file) != NULL)
+    {
+        count++;
+    }
+    return count;
 }

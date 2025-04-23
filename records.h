@@ -23,7 +23,8 @@ typedef enum SearchType
 RouteRecord *createRecords(FILE *file);
 int fillRecords(RouteRecord *r, FILE *file);
 int findAirlineRoute(RouteRecord *r, int length, const char *origin, const chat *destination, const char *airline, int curIndex);
-void searchRecords(RouteRecord *r, int length, const char *searchKey, SearchType type);
+void searchRecords(RouteRecord *r, int length, const char *key1, const char *key2, SearchType type);
 void printMenu(void);
+int getSizeofArray(FILE *file);
 
 #endif
