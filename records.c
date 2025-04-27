@@ -8,10 +8,6 @@ RouteRecord *createRecords(FILE *file)
 {
     char line[256];
     int count = 0;
-    int passengers[] = {0, 0, 0, 0, 0, 0};
-    char *month = NULL;
-    char *token = NULL;
-    int num = 0;
     fgets(line, sizeof(line), file);
 
     while (fgets(line, sizeof(line), file) != NULL)
@@ -137,7 +133,6 @@ void searchRecords(RouteRecord *r, int length, const char *key1, const char *key
 
     for (int i = 0; i < length; i++)
     {
-        int found = 0;
         switch (type)
         {
         case ROUTE:

@@ -21,11 +21,11 @@ typedef enum SearchType
     AIRLINE
 } SearchType;
 
-RouteRecord createRecords(FILEfile);
-int fillRecords(RouteRecord r, FILEfile);
-int findAirlineRoute(RouteRecord r, int length, const charorigin, const char destination, const charairline, int currIndex);
-void searchRecords(RouteRecord r, int length, const charkey1, const char key2, SearchType type);
+RouteRecord *createRecords(FILE *file);
+int fillRecords(RouteRecord *r, FILE *file);
+int findAirlineRoute(RouteRecord *r, int length, const char *origin, const char *destination, const char *airline, int currIndex);
+void searchRecords(RouteRecord *r, int length, const char *key1, const char *key2, SearchType type);
 void printMenu(void);
-int getSizeofArray(FILEfile);
+int getSizeofArray(FILE *file);
 
 #endif
