@@ -173,7 +173,7 @@ void searchRecords(RouteRecord *r, int length, const char *key1, const char *key
         total += monthly[j];
     }
 
-    avg = total / 6;
+    avg = total / 6.0;
 
     printf("Statistics:\n");
     printf("Total Passengers: %10.0lf\n", total);
@@ -183,7 +183,7 @@ void searchRecords(RouteRecord *r, int length, const char *key1, const char *key
         printf("Pasengers in %s: %10d\n", months[i - 1], monthly[i]);
     }
 
-    printf("Average Passengers per month: %10.0lf\n", avg);
+    printf("Average Passengers per month: %10.0lf\n", (int)avg);
 }
 
 void printMenu()
