@@ -183,7 +183,7 @@ void searchRecords(RouteRecord *r, int length, const char *key1, const char *key
         printf("Pasengers in %s: %10d\n", months[i - 1], monthly[i]);
     }
 
-    printf("Average Passengers per month: %10.0lf\n", (int)avg);
+    printf("Average Passengers per month: %10d\n", (int)avg);
 }
 
 void printMenu()
